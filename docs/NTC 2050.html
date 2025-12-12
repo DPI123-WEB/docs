@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>NTC 2050</title>
+<link rel="icon" type="image/png" href="CTS.png">
+    <style>
+        /* =========================
+           Estilos generales
+        ========================= */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+        }
+
+        p {
+            line-height: 1.5;
+            margin: 0 0 10px 0;
+        }
+
+        /* =========================
+           Títulos fuera del container
+        ========================= */
+        h1 { 
+            color: #0070C0; 
+            position: absolute;
+            top: 120px;  
+            left: 20px;
+            margin: 0;
+            font-size: 70px; 
+            z-index: 2;
+        }
+
+        h2 {
+            color: #6D6D6D;
+            font-family: 'Titillium Web', sans-serif;
+            font-weight: bold;
+            position: absolute;
+            top: 200px;
+            left: 20px;
+            margin: 0;
+            font-size: 25px;
+            z-index: 2;
+        }
+
+        /* =========================
+           Contenedores horizontales
+        ========================= */
+        .text-row {
+            display: flex;
+            gap: 20px; /* espacio entre contenedores */
+            position: absolute;
+            top: 250px;
+            left: 20px;
+            z-index: 1;
+        }
+
+        .text-container {
+            width: 300px;     
+            padding: 20px;
+            background-color: #1e73be; 
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* =========================
+           Icono volver redondo
+        ========================= */
+        .icono-volver {
+            width: 60px;
+            height: 60px;
+            position: fixed;           
+            top: 20px;
+            left: 20px;
+            border-radius: 50%;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease;
+            z-index: 2;                
+        }
+
+        .icono-volver img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .icono-volver:hover {
+            transform: scale(1.15);
+        }
+
+        /* =========================
+           Imagen independiente
+        ========================= */
+        .imagen-independiente {
+            position: absolute;
+            top: 290px;  
+            right: 50px;  
+            width: 400px;  
+            height: auto;
+            z-index: 0;
+        }
+
+        /* =========================
+           Cuadros azules para 517.17 y 517.31
+        ========================= */
+        .contenedor-cuadros {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .cuadro {
+            background: #1e73be;
+            color: white;
+            width: calc(50% - 20px);
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .cuadro .titulo {
+            background: #003c7a;
+            padding: 8px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .btn-volver {
+            margin-top: 10px;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: #003c7a;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =========================
+         Icono volver
+    ========================= -->
+    <div class="icono-volver" id="volver">
+        <img src="volver.png" alt="Regresar">
+    </div>
+
+    <!-- =========================
+         Títulos fuera del container
+    ========================= -->
+    <h1>NTC 2050</h1>
+    <h2 id="titulo-subboton">230,95 Protección de equipo contra falla a tierra</h2>
+
+
+    <!-- =========================
+         Imagen independiente
+    ========================= -->
+    <img src="image1.png" alt="Imagen independiente" class="imagen-independiente">
+
+    <!-- =========================
+         Contenedores horizontales
+    ========================= -->
+    <div class="text-row" id="contenido-textos">
+        <div class="text-container">
+            <p>
+                Protección de equipo contra falla a tierra. Debe proporcionarse protección al equipo contra fallas a tierra en acometidas eléctricas en estrella, puestas a tierra sólidamente, con una tensión a tierra superior a 150 V, pero no superior a 1 000 V entre fases para cada desconectador de la acometida con un valor nominal de 1 000 A o más.
+            </p>
+        </div>
+        <div class="text-container">
+            <p>
+                El conductor puesto a tierra para sistemas en estrella puestos a tierra sólidamente se debe conectar directamente a la tierra a través de un sistema de electrodo de puesta a tierra, tal como se especifica en la sección 250.50, sin insertar ninguna resistencia ni dispositivo de impedancia.
+            </p>
+        </div>
+    </div>
+
+
+    <!-- =========================
+         Script JavaScript
+    ========================= -->
+    <script>
+        // =========================
+        // Obtener parámetros de URL
+        // =========================
+        const urlParams = new URLSearchParams(window.location.search);
+        const segmento = urlParams.get('segmento') || 'health';
+        const norma = urlParams.get('norma') || 'NTC2050';
+        const subboton = urlParams.get('subboton');
+
+        // =========================
+        // Funcionalidad icono volver
+        // =========================
+        const volver = document.getElementById('volver');
+        volver.addEventListener('click', () => {
+            window.location.href = `index.html?segmento=${segmento}&norma=${norma}`;
+        });
+
+        // =========================
+        // Contenido principal
+        // =========================
+        const contenido = document.getElementById('contenido-textos');
+
+        const contenido51717 = `
+            <div class="contenedor-cuadros">
+                <div class="cuadro">
+                    <div class="titulo">APLICABILIDAD</div>
+                    <p>Los requisitos de la sección 517.17 se deben aplicar a hospitales y a otras edificaciones (incluidas aquellas con áreas múltiples) con áreas para cuidados críticos (Categoría 1) o que utilizan equipos eléctricos para asistencia vital, y a edificios que brindan los servicios o productos esenciales que se requieren para el funcionamiento de áreas para cuidados críticos (Categoría 1) o de los equipos eléctricos para mantenimiento de la vida
+.</p>
+                </div>
+                <div class="cuadro">
+                    <div class="titulo">ALIMENTADORES</div>
+                    <p>Cuando se provea protección contra fallas a tierra para el funcionamiento del medio de desconexión de la acometida o del alimentador, como se establece en las secciones 230.95 o 215.10, se debe instalar un paso adicional de protección contra fallas a tierra en todo el siguiente nivel del medio de desconexión del alimentador, aguas abajo hacia la carga. Tal protección debe consistir en dispositivos de protección contra sobre corriente y transformadores de corriente u otro equipo de protección equivalente que haga que se abra el medio de desconexión del alimentador. Los niveles adicionales de protección contra fallas a tierra no se deben instalar en el lado de carga de un interruptor esencial de transferencia del sistema eléctrico.
+</p>
+                </div>
+                <div class="cuadro">
+                    <div class="titulo">SELECTIVIDAD</div>
+                    <p>La protección contra fallas a tierra para la operación de los medios de desconexión de la acometida y del alimentador debe ser totalmente selectiva, de modo que, 
+en caso de fallas a tierra en el lado de la carga del dispositivo del alimentador, se abra el dispositivo de protección del alimentador y no el de la acometida. La separación de las características del tiempo – corriente de la protección contra 
+fallas a tierra debe ajustarse a las recomendaciones del fabricante y debe considerar todas las tolerancias requeridas y el tiempo de operación de los desconectadores para conseguir una selectividad de 100 %.
+</p>
+                </div>
+                <div class="cuadro">
+                    <div class="titulo">PRUEBAS</div>
+                    <p>Cuando se instale por primera vez el equipo de protección contra fallas a tierra, se debe hacer una prueba de desempeño para cada nivel, para asegurar el cumplimiento con la sección 517.17
+</p>
+                </div>
+            </div>
+        `;
+
+        const contenido51731 = `
+            <div class="contenedor-cuadros" id="contenedor-51731">
+                <!-- Cuadro 1: RAMALES SEPARADOS -->
+                <div class="cuadro">
+                    <div class="titulo">RAMALES SEPARADOS</div>
+                    <div class="contenido-principal">
+                        <p>Los sistemas eléctricos esencia les para hospitales deben constar de tres ramales separados, capaces de alimentar una cantidad limitada del servicio de alumbrado y energía que se consideren esenciales para la  protección vital y el funcionamiento efectivo del hospital durante el tiempo en que el servicio eléctrico normal está interrumpido por alguna razón. Los tres ramales son protección vital, sistemas críticos y de equipos. 
+La división entre los ramales debe ocurrir en los conmutado res de transferencia cuando se requiere más de uno de estos conmutadores. [99:6.4.2.2.1.2
+</p>
+                    </div>
+                </div>
+
+               <!-- Cuadro 2: CONMUTADORES DE TRANSFERENCIA -->
+<div class="cuadro">
+    <div class="titulo">
+        CONMUTADORES DE TRANSFERENCIA
+        <button class="btn-icon" onclick="mostrarSubCuadro(event)">🔽</button>
+    </div>
+    <div class="contenido-principal">
+        <p>La cantidad de conmutadores de transferencia que se van a utilizar debe basarse en consideraciones de confiabilidad y diseño. Cada ramal del sistema eléctrico esencial debe tener uno o más conmutadores 
+de transferencia. En instalaciones con una demanda máxima en el sistema 
+eléctrico esencial de 150 kVA, debe permitirse que haya un interruptor de transferencia y un sistema de distribución  descendente para alimentar uno o más ramales.
+
+NOTA INFORMATIVA Nro. 1 Ver norma NFPA 99-2018, Health Care Facilities Code, sección 6.4.3.2, Interruptores de transferencia; sección 6.4.2.1.5, Características de los interruptores de transferencia automáticos; sección 6.4.2.1.5.15, 
+Características de los interruptores de transferencia no auto máticos y sección 6.4.2.1.7, Características de los dispositivos 
+de transferencia no automáticos.
+</p>    
+    </div>
+    <div class="contenido-secundario" style="display:none;">
+        <!-- Solo imágenes, nada de texto -->
+        <img src="conmutador1.png" alt="Conmutador primario" style="width:300px; margin-bottom:10px;">
+        <img src="conmutador2.png" alt="Conmutador secundario" style="width:300px; margin-bottom:10px;">
+        <button class="btn-volver" onclick="volverContenido(event)">Volver</button>
+    </div>
+</div>
+
+                <!-- Cuadro 3: REQUISITOS DEL ALAMBRADO -->
+                <div class="cuadro">
+                    <div class="titulo">REQUISITOS DEL ALAMBRADO</div>
+                    <div class="contenido-principal">
+                            <p>El ramal para la protección vital y el ramal crítico del sistema eléctrico esencial 
+deben mantenerse totalmente independientes de todos los alambrados y equipos restantes, y no deben entrar juntos en  las mismas canalizaciones, cajas o gabinetes ni con ningún  otro alambrado.
+Cuando las áreas de cuidados generales son alimentadas desde dos conmutadores de transferencia independientes del sistema eléctrico esencial, de acuerdo con lo establecido en la sección 517.18(A), excepción Nro. 3, los circuitos para cuidados  generales provenientes de los dos sistemas independientes se deben mantener separados uno del otro.
+
+Cuando las áreas de cuidados críticos son alimentadas des de dos interruptores de transferencia separados del sistema eléctrico esencial, de acuerdo con lo establecido en la sección  517.19(A), excepción Nro. 2, los circuitos para cuidados  críticos provenientes de los dos sistemas separados se deben mantener independientes uno del otro.
+Debe permitirse que el alambrado del ramal de protección vital y del ramal crítico ocupen las mismas canalizaciones, cajas o gabinetes de otros circuitos que no son parte del ramal, cuando dicho alambrado cumple con una de las siguientes condiciones:
+
+(1) Esté instalado en encerramientos de equipos de transferencia.
+(2) Esté instalado en las luminarias de salida o de emergencia alimentadas por dos fuentes.
+(3) Esté instalado en una caja de conexiones común conectada a las luminarias de salida o de emergencia 
+alimentadas desde dos fuentes.
+(4) Sea para dos o más circuitos alimentados desde el  mismo ramal y el mismo conmutador de transferencia. Debe permitirse que el alambrado del ramal para equipos ocupe las mismas canalizaciones, cajas o gabinetes de otros circuitos que no formen parte del sistema eléctrico esencial.</p>  
+
+                    </div>
+                </div>
+<!-- Cuadro 4: SISTEMAS DE ALIMENTACION AISLADOS -->
+        <div class="cuadro">
+            <div class="titulo">SISTEMAS DE ALIMENTACION AISLADOS</div>
+            <div class="contenido-principal">
+                <p>Cuando se instalen sistemas de alimentación aislados en cualquiera de las áreas especificadas en las secciones 517.34(A)(1) y (A)(2), cada sistema debe estar alimentado por un circuito individual que no abastezca otras cargas</p>
+            </div>
+        </div>
+<!-- Cuadro 5:CAPACIDAD DE LOS SITEMAS-->
+        <div class="cuadro">
+            <div class="titulo">CAPACIDAD DE LOS SISTEMAS</div>
+            <div class="contenido-principal">
+                <p>El sistema eléctrico esencial debe tener la capacidad y valor nominal requeridos para satisfacer la demanda máxima real que probablemente va a ser solicitada por la carga conectada.</p>
+
+            </div>
+        </div>
+<!-- Cuadro 5:COORDINACION -->
+        <div class="cuadro">
+            <div class="titulo">COORDINACION</div>
+            <div class="contenido-principal">
+                <p> Los dispositivos de protección contra sobre corriente que se utilizan en el sistema eléctrico esencial deben estar coordinados para el período en el que la duración de una falla se extienda más allá de 0,1 segundo.</p>
+
+            </div>
+        </div>
+
+    </div>
+           
+        `;
+
+const contenido51732 = `
+    <div class="contenedor-cuadros" id="contenedor-51732">
+        <!-- Cuadro 1: GENERADOR DE EMERGENCIA -->
+        <div class="cuadro">
+            <div class="titulo">A</div>
+            <div class="contenido-principal">
+                <p>Aquellas funciones del cuidado de pacientes que de pendan del alumbrado o de artefactos conectados al sistema eléctrico esencial se deben dividir en el ramal para protección vital y en el ramal crítico, según se describe en las secciones 517.33 y 517.34.
+</p>
+            </div>
+        </div>
+
+        <!-- Cuadro 3: MANTENIMIENTO -->
+        <div class="cuadro">
+            <div class="titulo">B</div>
+            <div class="contenido-principal">
+               <P>El ramal para la protección vital y el ramal crítico se deben instalar y conectar a la fuente de alimentación alterna que se especifica en la sección 517.30(A) y (B), de forma que todas las funciones que se especifican aquí para los ramales críticos y de protección vital se restablezcan automáticamente para que funcionen antes de los 10 segundos posteriores a la interrupción de la fuente normal. [99:6.4.3.1]</P>
+            </div>
+        </div>
+    </div>
+`;
+const contenido51733 = `
+    <div class="contenedor-cuadros" id="contenedor-51733">
+        <div class="cuadro">
+            <div class="contenido-principal">
+                <p>Ninguna función diferente de aquellas enumeradas en las secciones 517.33(A) hasta (H) debe ser conectada al ramal para la protección  vital. El ramal para la protección vital del sistema eléctrico esencial debe suministrar energía a las siguientes funciones de alumbrado, tomacorrientes y equipos.
+</p>
+            </div>
+        </div>
+    </div>
+`;
+const contenido51734 = `
+        <!-- Cuadro 2: con título y contenido -->
+        <div class="cuadro">
+            <div class="titulo">ALUMBRADO DE TRABAJO Y TOMACORRIENTES SELECCIONADOS</div>
+            <div class="contenido-principal">
+                <p>EEl ramal crítico del sistema eléctrico esencial debe alimentar al sistema de alumbrado de trabajo, los equipos fijos, los tomacorrientes seleccionados y los circuitos de alimentación especiales de las siguientes áreas y funciones relativas al cuidado de los pacientes.
+</p>
+            </div>
+        </div>
+    </div>
+`;
+
+const contenido51742 = `
+<div class="contenedor-cuadros" id="contenedor-51742">
+    <!-- Cuadro 1 -->
+    <div class="cuadro">
+        <div class="titulo">GENERALIDADES</div>
+        <div class="contenido-principal">
+            <p>Generalidades. Los sistemas eléctricos esenciales para casas con atención de enfermería y centros de cuidado limitado deben estar divididos en los siguientes dos ramales, el ramal de protección vital y el ramal del equipo. [99:6.5.2.2.1.2].
+
+La división entre los ramales debe realizarse en los conmutadores de transferencia cuando se requiere más de uno de estos conmutadores.
+</p>
+        </div>
+    </div>
+
+    <!-- Cuadro 2 con botón para contenido secundario -->
+    <div class="cuadro">
+        <div class="titulo">
+            CONMUTADORES DE TRASNFERENCIA
+            <button class="btn-icon" onclick="mostrarSubCuadro(event)">🔽</button>
+        </div>
+        <div class="contenido-principal">
+            <p>La cantidad de conmutadores de transferencia que se van a utilizar debe 
+basarse en consideraciones de confiabilidad, diseño y carga. [99:6.5.2.2.1.4]
+
+(1) Cada ramal del sistema eléctrico esencial debe tener uno o más conmutadores de transferencia [99:6.5.2.2.1.4(A)] 
+
+(2) Se debe permitir que un interruptor de transferencia 
+alimente a uno o más ramales o sistemas en una instalación con una carga continua en el interruptor de 
+150 kVA (120 kW) o menos. [99:6.5.2.2.1.4(B)]
+
+NOTA INFORMATIVA Nro. 1Ver norma NFPA 99-
+2018, Health Care Facilities Code, sección 6.4.3.2, Interruptores de transferencia Tipo II; sección 6.4.2.1.5, 
+
+Características de los interruptores de transferencia 
+automáticos; y sección 6.4.2.1.7, Características de los 
+dispositivos de transferencia no automáticos.
+NOTA INFORMATIVA Nro. 2 Ver NOTA INFORMA TIVA de la Figura 517.42(a) 
+NOTA INFORMATIVA Nro. 3 Ver NOTA INFORMA TIVA de la Figura 517.42(b
+</p>
+        </div>
+        <div class="contenido-secundario" style="display:none;">
+            <!-- Aquí van las imágenes o contenido secundario -->
+            <img src="ima1.png" alt="Imagen secundaria 1" style="width:300px; margin-bottom:10px;">
+            <img src="ima2.png" alt="Imagen secundaria 2" style="width:300px; margin-bottom:10px;">
+            <button class="btn-volver" onclick="volverContenido(event)">Volver</button>
+        </div>
+    </div>
+
+    <!-- Cuadro 3 -->
+    <div class="cuadro">
+        <div class="titulo">CAPACIDAD DEL SISTEMA</div>
+        <div class="contenido-principal">
+            <p>El sistema eléctrico esencial debe tener la capacidad adecuada para satisfacer la demanda para la operación de todas las funciones y equipos que van a ser alimentados de manera simultánea por todos los ramales.
+</p>
+        </div>
+    </div>
+
+    <!-- Cuadro 4 -->
+    <div class="cuadro">
+        <div class="titulo">SEPARACION DE OTRS CIRCUITOS</div>
+        <div class="contenido-principal">
+            <p>El ramal de protección vital y el ramal del equipo deben mantenerse totalmente independientes de cualquier otro alambrado y equipo. 
+</p>
+        </div>
+    </div>
+</div>
+`;
+
+const contenido51743 = `
+<div class="contenedor-cuadros" id="contenedor-51743">
+    <!-- Cuadro único -->
+    <div class="cuadro">
+        <div class="contenido-principal">
+            <p>El ramal de protección vital debe tener conexión automática, garantizando que ante fallas se mantenga la continuidad del suministro eléctrico en todas las áreas críticas del hospital.</p>
+        </div>
+    </div>
+</div>
+`;
+
+
+       // Renderizar contenido según subbotón
+if(subboton === "517,17 Protección contra fallas a tierra") {
+    document.querySelector('h2').textContent = subboton;
+    document.getElementById('contenido-textos').innerHTML = contenido51717;
+} 
+else if(subboton === "517.31 Requisitos para el sistema eléctrico esencial") {
+    document.querySelector('h2').textContent = subboton;
+    document.getElementById('contenido-textos').innerHTML = contenido51731;
+}
+else if(subboton === "517.32 Ramales que requieren conexión automática") {
+    document.querySelector('h2').textContent = subboton;
+    document.getElementById('contenido-textos').innerHTML = contenido51732;
+}
+else if(subboton?.includes("517.33")) {
+    document.querySelector('h2').textContent = subboton; // o algún título general
+    contenido.innerHTML = contenido51733;
+}
+else if(subboton?.includes("517.34")) {
+    document.querySelector('h2').textContent = subboton;
+    contenido.innerHTML = contenido51734;
+}
+else if(subboton?.includes("517.42")) {
+    document.querySelector('h2').textContent = subboton;
+    contenido.innerHTML = contenido51742;
+}
+else if(subboton?.includes("517.43")) {
+    document.querySelector('h2').textContent = subboton;
+    contenido.innerHTML = contenido51743;
+}
+
+
+
+        // =========================
+        // Funciones para mostrar/volver contenido secundario
+        // =========================
+       function mostrarSubCuadro(event) {
+    const cuadro = event.currentTarget.closest('.cuadro');
+    const principal = cuadro.querySelector('.contenido-principal');
+    const secundario = cuadro.querySelector('.contenido-secundario');
+
+    if(principal) principal.style.display = 'none';
+    if(secundario) secundario.style.display = 'block';
+
+    // Ocultar todos los cuadros excepto el actual
+    document.querySelectorAll('.contenedor-cuadros .cuadro').forEach(c => {
+        if(c !== cuadro) c.style.display = 'none';
+    });
+
+    // Ocultar el botón del cuadro actual
+    event.currentTarget.style.display = 'none';
+}
+
+
+function volverContenido(event) {
+    const cuadro = event.currentTarget.closest('.cuadro');
+    const principal = cuadro.querySelector('.contenido-principal');
+    const secundario = cuadro.querySelector('.contenido-secundario');
+
+    if(principal) principal.style.display = 'block';
+    if(secundario) secundario.style.display = 'none';
+
+    // Mostrar todos los cuadros
+    document.querySelectorAll('.contenedor-cuadros .cuadro').forEach(c => {
+        c.style.display = 'block';
+        // Mostrar el botón si tiene contenido secundario
+        const boton = c.querySelector('button.btn-icon');
+        if(boton) boton.style.display = 'inline-block';
+    });
+}
+
+
+    </script>
+</body>
+</html>
+

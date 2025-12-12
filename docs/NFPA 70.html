@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>NFPA 70</title>
+<link rel="icon" type="image/png" href="CTS.png">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f0f0f0;
+    }
+
+    p {
+        line-height: 1.5;
+        margin: 0 0 10px 0;
+    }
+
+    h1 { 
+        color: #0070C0; 
+        position: absolute;
+        top: 120px;  
+        left: 20px;
+        margin: 0;
+        font-size: 70px; 
+        z-index: 2;
+    }
+
+    h2 {
+        color: #6D6D6D;
+        font-weight: bold;
+        position: absolute;
+        top: 200px;
+        left: 20px;
+        margin: 0;
+        font-size: 25px;
+        z-index: 2;
+    }
+
+    /* CONTENEDOR DONDE SE INSERTA EL CONTENIDO */
+    .text-row {
+        margin-top: 260px;
+        margin-left: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        position: relative;
+        z-index: 1;
+        width: 80%;
+    }
+
+    .icono-volver {
+        width: 60px;
+        height: 60px;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        border-radius: 50%;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 0 5px rgba(0,0,0,0.3);
+        transition: transform 0.2s ease;
+        z-index: 2;
+    }
+
+    .icono-volver img { width: 40px; height: 40px; }
+    .icono-volver:hover { transform: scale(1.15); }
+
+    .imagen-independiente {
+        position: absolute;
+        top: 290px;
+        right: 50px;
+        width: 400px;
+        height: auto;
+        z-index: 0;
+    }
+
+    /* ============= ESTILOS DE LOS TITULOS Y CONTENIDOS ALINEADOS ============= */
+
+    .contenedor-general {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .fila {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .cuadro-titulo {
+        background: #003c7a;
+        color: white;
+        padding: 15px;
+        width: 80px;
+        border-radius: 8px;
+        font-weight: bold;
+        margin-top: 20px; 
+        border-radius: 8px;
+        font-weight: bold;
+        border: 2px solid #555555;
+      display: flex;              /* ← NECESARIO PARA CENTRAR */
+    justify-content: center;    /* centra horizontal */
+    align-items: center;        /* centra vertical */
+    text-align: center;  
+
+    }
+/* ===== CLASES INDIVIDUALES PARA MOVER CADA TÍTULO ===== */
+    .titulo1 { margin-top: 100px; }    /* Título 1 */
+    .titulo2 { margin-top: 50px; }   /* Título 2 */
+    .titulo3 { margin-top: 80px; }   /* Título 3 */
+
+    .cuadro-contenido {
+        background: #1e73be;
+        color: white;
+        padding: 15px;
+        width: 450px;
+        border-radius: 8px;
+        margin-left: 30px;
+    }
+.resaltado {
+    color: #ffffff;    /* color del texto, por ejemplo dorado */
+    font-weight: bold; /* opcional: negrita */
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="icono-volver" id="volver">
+    <img src="volver.png" alt="Regresar">
+</div>
+
+<h1>NFPA 70</h1>
+<h2 id="titulo-subboton"></h2>
+
+<img src="image1.png" alt="Imagen independiente" class="imagen-independiente">
+
+<div class="text-row" id="contenido-textos"></div>
+
+<script>
+/* =====================================================
+   CONTENIDOS DE SUBBOTONES
+===================================================== */
+
+const contenidos = {
+    "708.24 Equipo de Medida": {
+        titulo: "708.24 Equipo de Medida",
+        html: `
+            <div class="contenedor-general">
+
+                <div class="fila">
+                     <div class="cuadro-titulo titulo1">(A)</div>
+                    <div class="cuadro-contenido">
+                        <p><span class="resaltado">Generalidades:</span><br> El equipo de transferencia, incluyendo los interruptores de transferencia automática, debe ser automático y estar identificado para uso de emergencia. El equipo de transferencia debe estar diseñado e instalado de manera que se evite la interconexión involuntaria de las fuentes de alimentación normal y la alimentación para operaciones críticas durante cualquier operación del equipo de transferencia. El equipo de transferencia y los sistemas de generación de energía eléctrica instalados para permitir su funcionamiento en paralelo con la alimentación normal deben cumplir los requisitos del Artículo 705.   
+                    </div>
+                </div>
+
+                <div class="fila">
+                    <div class="cuadro-titulo titulo2">(B)</div>
+                    <div class="cuadro-contenido">
+                        <p><span class="resaltado">Seccionadores de desviación:</span><br>Debe permitirse un medio para conectar en desviación y separar físicamente el equipo de transferencia. Si se emplean seccionadores de desviación, se debe evitar la operación accidental en paralelo. 
+</p>
+                    </div>
+                </div>
+
+                <div class="fila">
+                     <div class="cuadro-titulo titulo3">(C)</div>
+                    <div class="cuadro-contenido">
+                        <p><span class="resaltado">Interruptores de transferencia automática:</span><br> Cuando se utilizan con fuentes que no son auto sincronizadas, los inter‐ ruptores de transferencia automática deben cumplir lo indicado en (C)(1) y (C)(2) (1) Los interruptores de transferencia automática deben estar listados para uso de emergencia. (2) Los interruptores de transferencia automática deben operarse eléctricamente y retenerse mecánicamente. (D) Uso. El equipo de transferencia solo debe alimentar cargas del COPS.
+</p>
+                    </div>
+                </div>
+
+            </div>
+        `
+    }
+};
+
+/* =====================================================
+   OBTENER PARÁMETROS DE URL
+===================================================== */
+const urlParams = new URLSearchParams(window.location.search);
+const segmento = urlParams.get("segmento") || "health";
+const norma = urlParams.get("norma") || "NFPA 70";
+const subboton = urlParams.get("subboton");
+
+/* =====================================================
+   BOTÓN VOLVER
+===================================================== */
+document.getElementById("volver").addEventListener("click", () => {
+    window.location.href = `index.html?segmento=${segmento}&norma=${norma}`;
+});
+
+/* =====================================================
+   MOSTRAR CONTENIDO SEGÚN SUBBOTÓN
+===================================================== */
+if (subboton && contenidos[subboton]) {
+    document.getElementById("titulo-subboton").textContent = contenidos[subboton].titulo;
+    document.getElementById("contenido-textos").innerHTML = contenidos[subboton].html;
+} else {
+    document.getElementById("titulo-subboton").textContent = "Seleccione un subbotón";
+    document.getElementById("contenido-textos").innerHTML =
+        `<div class="cuadro-contenido">No hay contenido disponible.</div>`;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>UL 1008</title>
+<link rel="icon" type="image/png" href="CTS.png">
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f0f0f0;
+}
+
+p {
+    line-height: 1.5;
+    margin: 0 0 10px 0;
+}
+
+h1 { 
+    color: #0070C0; 
+    position: absolute;
+    top: 120px;  
+    left: 20px;
+    margin: 0;
+    font-size: 70px; 
+    z-index: 2;
+}
+
+h2 {
+    color: #6D6D6D;
+    font-weight: bold;
+    position: absolute;
+    top: 200px;
+    left: 20px;
+    margin: 0;
+    font-size: 25px;
+    z-index: 2;
+}
+
+.icono-volver {
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease;
+    z-index: 2;
+}
+
+.icono-volver img { 
+    width: 40px; 
+    height: 40px; 
+}
+
+.icono-volver:hover { 
+    transform: scale(1.15); 
+}
+
+.imagen-independiente {
+    position: absolute;
+    top: 290px;
+    right: 50px;
+    width: 400px;
+    height: auto;
+    z-index: 0;
+}
+
+.cuadro-titulo {
+    background: #003c7a;
+    color: white;
+    padding: 15px;
+    width: 80px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 20px;
+    border: 2px solid #555555;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* ===== Títulos individuales ===== */
+.titulo1 { margin-top: 20px; }
+.titulo2 { margin-top: 60px; }
+.titulo3 { margin-top: 80px; }
+.titulo4 { margin-top: 50px; }
+.titulo5 { margin-top: 20px; }
+.titulo6 { margin-top: 60px; }
+.titulo7 { margin-top: 20px; }
+.titulo8 { margin-top: 20px; }
+.titulo9 { margin-top: 50px; }
+.titulo10 { margin-top: 20px;}
+.titulo11 { margin-top: 70px; }
+.titulo12{ margin-top: 50px; }
+.titulo13 { margin-top: 30px; }
+.titulo14 { margin-top: 30px; }
+
+
+/* ===================== Estilos Sincronismo ===================== */
+.sincronismo-row {
+    margin-top: 250px;
+    display: flex;
+    gap: 20px;
+}
+
+.sincronismo-columna {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sincronismo-contenido {
+    background: #1e73be;
+    color: white;
+    padding: 15px;
+    width: 450px;
+    border-radius: 8px;
+}
+
+/* ===================== Estilos Transferencia ===================== */
+.transfer-row {
+    margin-top: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.transfer-fila {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px; 
+}
+
+.transfer-contenido {
+    background: #1e73be;
+    color: white;
+    padding: 15px;
+    width: 450px;
+    border-radius: 8px;
+}
+
+/* ===================== Botones navegación ===================== */
+.nav-transfer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    position: fixed;
+    bottom: 30px; 
+    left: 50%;                /*  Centro horizontal */
+    transform: translateX(-50%);  /* Ajuste perfecto al centro */
+}
+
+.btn-nav {
+    font-size: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+    transition: 0.2s;
+}
+
+.btn-nav:hover {
+    transform: scale(1.15);
+}
+</style>
+</head>
+<body>
+
+<div class="icono-volver" id="volver">
+    <img src="volver.png" alt="Regresar">
+</div>
+
+<h1>UL 1008</h1>
+<h2 id="titulo-subboton"></h2>
+<img src="image1.png" alt="Imagen independiente" class="imagen-independiente">
+
+<div class="text-row" id="contenido-textos"></div>
+
+<script>
+/* =====================================================
+   CONTENIDOS POR SUB-BOTÓN
+===================================================== */
+const contenidos = {
+    "Sincronismo": {
+        titulo: "3.11 Sincronismo",
+        html: `
+            <div class="sincronismo-row">
+                <div class="columna sincronismo-columna">
+                    <div class="cuadro-contenido sincronismo-contenido">
+                        <p>
+                            El sincronismo se realiza verificando que las fuentes de energía 
+                            estén en fase y frecuencia compatibles antes de conectarlas en paralelo. 
+                            Incluye control de voltaje, frecuencia, fase y alarmas para garantizar 
+                            una conexión segura de los generadores o fuentes al sistema eléctrico.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        `
+    },
+
+    "3.13 Interruptor de Transferencia": {
+        titulo: "3.13 Interruptor de Transferencia",
+        html: `
+            <div id="transfer-container"></div>
+
+            <div class="nav-transfer">
+                <button id="btn-prev" class="btn-nav">⮜</button>
+                <button id="btn-next" class="btn-nav">⮞</button>
+            </div>
+        `
+    }
+};
+
+/* =====================================================
+   URL PARAMS
+===================================================== */
+const urlParams = new URLSearchParams(window.location.search);
+const segmento = urlParams.get("segmento") || "health";
+const norma = urlParams.get("norma") || "UL 1008";
+const subboton = urlParams.get("subboton");
+
+/* =====================================================
+   BOTÓN VOLVER
+===================================================== */
+document.getElementById("volver").addEventListener("click", () => {
+    window.location.href = `index.html?segmento=${segmento}&norma=${norma}`;
+});
+
+/* =====================================================
+   MOSTRAR CONTENIDO BASE
+===================================================== */
+if (subboton && contenidos[subboton]) {
+    document.getElementById("titulo-subboton").textContent = contenidos[subboton].titulo;
+    document.getElementById("contenido-textos").innerHTML = contenidos[subboton].html;
+} else {
+    document.getElementById("titulo-subboton").textContent = contenidos["Sincronismo"].titulo;
+    document.getElementById("contenido-textos").innerHTML = contenidos["Sincronismo"].html;
+}
+
+/* =====================================================
+   PAGINACIÓN PARA 3.13 INTERRUPTOR DE TRANSFERENCIA
+===================================================== */
+/* =====================================================
+   PAGINACIÓN PARA 3.13 INTERRUPTOR DE TRANSFERENCIA
+===================================================== */
+if (subboton === "3.13 Interruptor de Transferencia") {
+
+    const paginasTransfer = [
+        `
+        <div class="transfer-row">
+            <div class="transfer-fila">
+                <div class="cuadro-titulo titulo1">(A)</div>
+                <div class="transfer-contenido"><p>Interruptor de transferencia automático: Un interruptor de transferencia de acción automática.</p></div>
+            </div>
+            <div class="transfer-fila">
+                <div class="cuadro-titulo titulo2">(B)</div>
+                <div class="transfer-contenido"><p>Interruptor de transferencia de derivación/aislamiento: conjunto que incluye un interruptor de transferencia, contactos de paralelismo manuales o no automáticos y contactos de aislamiento que se utilizan para seleccionar una fuente de energía disponible para alimentar circuitos de carga y aislar eléctricamente el interruptor de transferencia para inspección y mantenimiento.</p></div>
+            </div>
+            <div class="transfer-fila">
+                <div class="cuadro-titulo titulo3">(C)</div>
+                <div class="transfer-contenido"><p>Interruptor de transferencia de transición cerrada: un interruptor de transferencia automático que está dispuesto con contactos superpuestos para proporcionar una operación de transferencia de conexión antes de la interrupción entre fuentes de energía normales y alternativas que están sincronizadas de forma activa o pasiva en el momento de la transferencia. Las dos fuentes están conectadas en paralelo durante no más de 100 ms.</p></div>
+            </div>
+            <div class="transfer-fila">
+                <div class="cuadro-titulo titulo4">(D)</div>
+                <div class="transfer-contenido"><p>Interruptor de transferencia de transición retardada: Un interruptor de transferencia de transición abierta con una posición en la que la carga se desconecta intencionalmente de ambas fuentes durante un período de tiempo específico.</p></div>
+            </div>
+        </div>
+        `,
+
+        `
+        <div class="transfer-row">
+            <div class="transfer-fila">
+                <div class="cuadro-titulo titulo5">(E)</div>
+                <div class="transfer-contenido"><p>Interruptor de transferencia de tipo cerrado: Un interruptor de transferencia provisto dentro de un gabinete completo.</p></div>
+            </div>
+            <div class="transfer-fila">
+                <div class="cuadro-titulo titulo6">(F)</div>
+                <div class="transfer-contenido"><p>Interruptor de transferencia híbrido: un interruptor de transferencia que incorpora componentes de potencia de estado sólido para cubrir una interrupción de potencia durante una interrupción mecánica antes de la operación de transferencia. Una vez finalizada la operación de transferencia, un espacio de aire proporciona aislamiento entre las fuentes.</p></div>
+            </div>
+            <div class="transfer-fila">
+                <div class="cuadro-titulo titulo7">(G)</div>
+                <div class="transfer-contenido"><p>Interruptor de transferencia manual: Un interruptor de transferencia operado no eléctricamente.</p></div>
+            </div>
+            <div class="transfer-fila">
+                <div class="cuadro-titulo titulo8">(H)</div>
+                <div class="transfer-contenido"><p>Interruptor de transferencia no automático: Un interruptor de transferencia operado eléctricamente que no actúa automáticamente.</p></div>
+            </div>
+        </div>
+        `,
+
+        `
+        <div class="transfer-row">
+            <div class="transfer-fila">
+                <div class="cuadro-titulo titulo9">(I)</div>
+                <div class="transfer-contenido"><p>Interruptor de transferencia de transición abierta: Un interruptor de transferencia que está dispuesto para proporcionar una interrupción antes de realizar la operación de transferencia entre fuentes de energía normales y alternativas, de modo que la carga se desconecte intencionalmente de ambas fuentes.</p></div>
+            </div>
+            <div class="transfer-fila">
+                <div class="cuadro-titulo titulo10">(J)</div>
+                <div class="transfer-contenido"><p>Interruptor de transferencia de tipo abierto: Un interruptor de transferencia completo y ensamblado sin carcasa.</p></div>
+            </div>
+            <div class="transfer-fila">
+                <div class="cuadro-titulo titulo11">(K)</div>
+                <div class="transfer-contenido"><p>ATS de carga suave: un interruptor de transferencia que ejecuta la transferencia de energía a la carga desde una fuente normal a un generador o desde un generador a una fuente normal mientras minimiza las fluctuaciones de voltaje y frecuencia sincronizando activamente el voltaje, la frecuencia y el ángulo de fase entre la fuente normal y las fuentes del generador y capaz de poner en paralelo las fuentes durante más de 100 ms mientras se transfiere la carga.</p></div>
+            </div>
+        </div>
+        `,
+
+        `
+        <div class="transfer-row">
+            <div class="transfer-fila">
+                <div class="cuadro-titulo titulo12">(L)</div>
+                <div class="transfer-contenido"><p>Interruptor de transferencia de estado sólido: interruptor de transferencia que incorpora componentes de potencia de estado sólido como medio de conmutación. (También puede identificarse como interruptor de transferencia estático o semiconductor).
+</p></div>
+            </div>
+            <div class="transfer-fila">
+                <div class="cuadro-titulo titulo13">(M)</div>
+                <div class="transfer-contenido"><p>Interruptor de transferencia tipo A: Un interruptor de transferencia que no emplea dispositivos de protección contra sobre corriente integrados.
+</p></div>
+            </div>
+            <div class="transfer-fila">
+                <div class="cuadro-titulo titulo14">(N)</div>
+                <div class="transfer-contenido"><p>Interruptor de transferencia tipo B: Un interruptor de transferencia que emplea dispositivos de protección contra sobre corriente integrados en al menos una fuente.
+</p></div>
+            </div>
+        </div>
+        `
+    ];
+
+    let paginaActual = 0;
+    const contenedor = document.getElementById("transfer-container");
+
+    function mostrarPagina() {
+        contenedor.innerHTML = paginasTransfer[paginaActual];
+    }
+
+    mostrarPagina();
+
+    document.getElementById("btn-prev").onclick = () => {
+        if (paginaActual > 0) {
+            paginaActual--;
+            mostrarPagina();
+        }
+    };
+
+    document.getElementById("btn-next").onclick = () => {
+        if (paginaActual < paginasTransfer.length - 1) {
+            paginaActual++;
+            mostrarPagina();
+        }
+    };
+}
+</script>
+
+</body>
+</html>

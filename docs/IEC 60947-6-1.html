@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>IEC 60947-6-1</title>
+<link rel="icon" type="image/png" href="CTS.png">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f0f0f0;
+    }
+
+    p {
+        line-height: 1.5;
+        margin: 0 0 10px 0;
+    }
+
+    h1 { 
+        color: #0070C0; 
+        position: absolute;
+        top: 120px;  
+        left: 20px;
+        margin: 0;
+        font-size: 70px; 
+        z-index: 2;
+    }
+
+    h2 {
+        color: #6D6D6D;
+        font-weight: bold;
+        position: absolute;
+        top: 200px;
+        left: 20px;
+        margin: 0;
+        font-size: 25px;
+        z-index: 2;
+    }
+
+    .text-row {
+        display: flex;
+        gap: 20px;
+        position: absolute;
+        top: 250px;
+        left: 20px;
+        z-index: 1;
+        flex-wrap: wrap;
+    }
+
+    .text-container {
+        width: 400px;     
+        padding: 20px;
+        background-color: #1e73be; 
+        color: white;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .icono-volver {
+        width: 60px;
+        height: 60px;
+        position: fixed;           
+        top: 20px;
+        left: 20px;
+        border-radius: 50%;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 0 5px rgba(0,0,0,0.3);
+        transition: transform 0.2s ease;
+        z-index: 2;                
+    }
+
+    .icono-volver img { width: 40px; height: 40px; }
+    .icono-volver:hover { transform: scale(1.15); }
+
+    .imagen-independiente {
+        position: absolute;
+        top: 290px;  
+        right: 50px;  
+        width: 400px;  
+        height: auto;
+        z-index: 0;
+    }
+</style>
+</head>
+<body>
+
+<div class="icono-volver" id="volver">
+    <img src="volver.png" alt="Regresar">
+</div>
+
+<h1>IEC 60947-6-1</h1>
+<h2 id="titulo-subboton"></h2>
+
+<img src="image1.png" alt="Imagen independiente" class="imagen-independiente">
+
+<div class="text-row" id="contenido-textos"></div>
+
+<script>
+    // ===============================
+    // Obtener parámetros de URL
+    // ===============================
+    const urlParams = new URLSearchParams(window.location.search);
+    const segmento = urlParams.get('segmento') || 'health';
+    const norma = urlParams.get('norma') || 'IEC 60947-6-1';
+    const subboton = urlParams.get('subboton');
+
+    // ===============================
+    // Icono volver
+    // ===============================
+    document.getElementById('volver').addEventListener('click', () => {
+        window.location.href = `index.html?segmento=${segmento}&norma=${norma}`;
+    });
+
+    // ===============================
+    // Contenido de subbotones
+    // ===============================
+ const contenidos = {
+    "3.3.1 Equipos de conmutación de Transferencia": {
+        titulo: "3.3.1 Equipos de conmutación de Transferencia",
+        html: `
+            <div class="text-container">
+                <p>
+                    Equipo que contiene uno o más dispositivos de conmutación y un mecanismo operativo para desconectar circuitos de carga de una fuente de alimentación y conectarlos a otra fuente de alimentación.
+                </p>
+            </div>
+        `
+    },
+    "3.3.9 Controlador ATS": {
+        titulo: "3.3.9 Controlador ATS",
+        html: `
+            <div class="text-container">
+                <p>
+                    Controlador que administra la transferencia automática de energía entre fuentes según la secuencia programada.
+                </p>
+            </div>
+        `
+    },
+    "6.7.2.1.2.1 Monitoreo de fuentes": {
+        titulo: "6.7.2.1.2.1 Monitoreo de fuentes",
+        html: `
+            <div class="text-container">
+                <p>
+                    Dispositivo destinado a detectar y monitorear las fuentes de suministro y controlar la secuencia de transferencia automática.
+                </p>
+            </div>
+        `
+    }
+};
+
+
+    // ===============================
+    // Mostrar contenido según subbotón
+    // ===============================
+    if(subboton && contenidos[subboton]){
+        document.getElementById('titulo-subboton').textContent = contenidos[subboton].titulo;
+        document.getElementById('contenido-textos').innerHTML = contenidos[subboton].html;
+    } else {
+        document.getElementById('titulo-subboton').textContent = "Seleccione un subbotón";
+        document.getElementById('contenido-textos').innerHTML = `<div class="text-container"><p>No hay contenido disponible.</p></div>`;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>NFPA 99</title>
+<link rel="icon" type="image/png" href="CTS.png">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f0f0f0;
+    }
+
+    p {
+        line-height: 1.5;
+        margin: 0 0 10px 0;
+    }
+
+    h1 { 
+        color: #0070C0; 
+        position: absolute;
+        top: 120px;  
+        left: 20px;
+        margin: 0;
+        font-size: 70px; 
+        z-index: 2;
+    }
+
+    h2 {
+        color: #6D6D6D;
+        font-weight: bold;
+        position: absolute;
+        top: 200px;
+        left: 20px;
+        margin: 0;
+        font-size: 25px;
+        z-index: 2;
+    }
+
+    .text-row {
+        display: flex;
+        gap: 20px;
+        position: absolute;
+        top: 250px;
+        left: 20px;
+        z-index: 1;
+        flex-wrap: wrap;
+    }
+
+    .text-container {
+        width: 400px;     
+        padding: 20px;
+        background-color: #1e73be; 
+        color: white;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .icono-volver {
+        width: 60px;
+        height: 60px;
+        position: fixed;           
+        top: 20px;
+        left: 20px;
+        border-radius: 50%;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 0 5px rgba(0,0,0,0.3);
+        transition: transform 0.2s ease;
+        z-index: 2;                
+    }
+
+    .icono-volver img { width: 40px; height: 40px; }
+    .icono-volver:hover { transform: scale(1.15); }
+
+    .imagen-independiente {
+        position: absolute;
+        top: 290px;  
+        right: 50px;  
+        width: 400px;  
+        height: auto;
+        z-index: 0;
+    }
+</style>
+</head>
+<body>
+
+<div class="icono-volver" id="volver">
+    <img src="volver.png" alt="Regresar">
+</div>
+
+<h1>NFPA 99</h1>
+<h2 id="titulo-subboton"></h2>
+
+<img src="image1.png" alt="Imagen independiente" class="imagen-independiente">
+
+<div class="text-row" id="contenido-textos"></div>
+
+<script>
+    // ===============================
+    // Obtener parámetros de URL
+    // ===============================
+    const urlParams = new URLSearchParams(window.location.search);
+    const segmento = urlParams.get('segmento') || 'health';
+    const norma = urlParams.get('norma') || 'NFPA 99';
+    const subboton = urlParams.get('subboton');
+
+    // ===============================
+    // Icono volver
+    // ===============================
+    document.getElementById('volver').addEventListener('click', () => {
+        window.location.href = `index.html?segmento=${segmento}&norma=${norma}`;
+    });
+
+    // ===============================
+    // Contenido de subbotones
+    // ===============================
+  const contenidos = {
+    "6.7.2.1.1.1 Coordinación":{
+        titulo: "6.7.2.1.1.1 Coordinación",
+        html: `
+             <div class="text-container">
+                <p>
+                    Los dispositivos de protección contra sobre corriente que sirvan al sistema eléctrico 
+                    esencial deben coordinarse durante el período de tiempo en que la duración de 
+                    una falla se extiende más allá de 0,1 segundos.
+                </p>
+
+                       </div>
+        `
+    },
+    "6.7.2.1.2 Características del interruptor de transferencia automática": {
+        titulo: "6.7.2.1.2 Características del interruptor de transferencia automática",
+        html: `
+            <div class="text-container">
+               
+                   <ul>
+                    <li>6.7.2.1.2.1 Monitoreo de fuentes (A, B, C, D, E).</li>
+                    <li>6.7.2.1.2.2 Enclavamiento.</li>
+                    <li>6.7.2.1.2.3* Manual de operación.</li>
+                    <li>6.7.2.1.2.4* Retardo de tiempo en el inicio de EPS.</li>
+                    <li>6.7.2.1.2.5 Retardo de tiempo en el panel de control del motor.
+.</li>
+                    <li>6.7.2.1.2.6 Tiempo de Retraso en Transferencia a EPS (A, B). 
+.</li>
+                    <li>6.7.2.1.2.7* Retraso de tiempo en la re transferencia a la fuente primaria.</li>
+                    <li>6.7.2.1.2.8 Omisión de retardo de tiempo si falla el EPS (A, B). 
+.</li>
+                    <li>6.7.2.1.2.9 Retardo de tiempo en el apagado del motor (A, B).
+</li>
+                    <li>6.7.2.1.2.10 Interruptor de prueba.</li>
+                    <li>6.7.2.1.2.11* Indicación de la posición del interruptor de transferencia.</li>
+                    <li>6.7.2.1.2.12 Transferencia de carga del motor.</li>
+                    <li>6.7.2.1.2.13* Aislamiento de Conductores Neutros.</li>
+                    <li>6.7.2.1.2.14 Re transferencia.</li>
+                    <li>6.7.2.1.2.15 Clasificación del interruptor.</li>
+                    <li>6.7.2.1.2.16 Interruptor de transferencia automática.</li>
+                    <li>66.7.2.1.2.17* Funciones del interruptor de transferencia no automática (A, B).</li>
+                </ul>
+
+            
+            </div>
+        `
+    },
+    "6.7.2.1.2.1 Monitoreo de fuentes": {
+        titulo: "6.7.2.1.2.1 Monitoreo de fuentes",
+        html: `
+            <div class="text-container">
+                <p>
+                    Se deben proporcionar dispositivos de detección de bajo voltaje para monitorear todas las líneas sin conexión a tierra de la fuente de energía primaria de la siguiente manera: 
+
+<p>
+                        Se deben proporcionar dispositivos de detección de bajo voltaje para monitorear todas las líneas sin conexión a tierra de la fuente de energía primaria. 
+                        <br>(1) Cuando el voltaje en cualquier fase cae por debajo del voltaje operativo mínimo de cualquier carga que se va a servir, el interruptor de transferencia iniciará automáticamente el arranque del motor y el proceso de transferencia al suministro de energía de emergencia (EPS).
+                        <br>(2) Cuando el voltaje en todas las fases de la fuente primaria vuelva a estar dentro de los límites especificados durante un período de tiempo designado, se iniciará el proceso de transferencia de regreso a la energía primaria.
+                        <br>(B) Se deben proporcionar equipos de detección de voltaje y de frecuencia para monitorear una línea sin conexión a tierra del EPS.
+                        <br>(C) La transferencia al EPS deberá inhibirse hasta que el voltaje y la frecuencia estén dentro de un rango específico para manejar las cargas que se van a servir.
+                        <br>(D) No se requerirá equipo de detección en el interruptor de transferencia, siempre que esté incluido con el panel de control del motor.
+                        <br>(E) No se requerirá equipo de detección de frecuencia para monitorear la fuente de servicios públicos cuando se use como un EPS.
+                    </p>
+            </div>
+        `
+},
+ "6.7.2.1.2.2 Enclavamiento": {
+    titulo: "6.7.2.1.2.2 Enclavamiento",
+    html: `
+        <div class="text-container">
+            <p>
+                El enclavamiento mecánico o un método alternativo aprobado deberá evitar la interconexión inadvertida 
+                de la fuente de alimentación principal y el EPS, o dos fuentes de energía separadas. [110:6.2.3]
+            </p>
+        </div>
+    `
+},
+"6.7.2.1.2.3 Manual de operación": {
+    titulo: "6.7.2.1.2.3 Manual de operación",
+    html: `
+        <div class="text-container">
+            <p>
+                Se debe proporcionar instrucción y equipo para una transferencia manual no eléctrica segura en caso de que el interruptor de transferencia funcione mal. [110:6.2.4]
+
+            </p>
+        </div>
+    `
+},
+"6.7.2.1.2.4 Retardo de tiempo en el inicio de EPS": {
+    titulo: "6.7.2.1.2.4 Retardo de tiempo en el inicio de EPS",
+    html: `
+        <div class="text-container">
+            <p>
+                Se permitirá que los retardos de tiempo estén ubicados en el panel de control del motor en lugar de en los interruptores de transferencia. [110:6.2.6]
+
+            </p>
+        </div>
+    `
+},
+"6.7.2.1.2.5 Retardo de tiempo en el panel de control del motor": {
+    titulo: "6.7.2.1.2.5  Retardo de tiempo en el panel de control del motor",
+    html: `
+        <div class="text-container">
+            <p>
+                Se permitirá que los retardos de tiempo estén ubicados en el panel de control del motor en lugar de en los interruptores de transferencia. [110:6.2.6]
+
+            </p>
+        </div>
+    `
+},
+"6.7.2.1.2.6 Tiempo de Retraso en Transferencia a EPS": {
+    titulo: 
+"6.7.2.1.2.6 Tiempo de Retraso en Transferencia a EPS",
+    html: `
+        <div class="text-container">
+            <p>
+                Se debe proporcionar un dispositivo de retardo de tiempo ajustable para retrasar la transferencia y secuenciar la transferencia de carga al EPS para evitar una caída de voltaje excesiva cuando el interruptor de transferencia se instala para uso de Nivel 1. [110:6.2.7]
+
+Comienzo del Tiempo de Retraso. El retardo de tiempo comenzará cuando se alcancen el voltaje y la frecuencia de EPS adecuados. [110:6.2.7.1]
+
+<br>(B) Retardo de tiempo en el panel de control del motor. Se permitirá que los retardos de tiempo estén ubicados en el panel de control del motor en lugar de en los interruptores de transferencia. [110:6.2.7.2]
+
+            </p>
+        </div>
+    `
+},
+"6.7.2.1.2.7 Retraso de tiempo en la retransferencia a la fuente primaria":{
+    titulo: 
+"6.7.2.1.2.7 Retraso de tiempo en la retransferencia a la fuente primaria",
+    html: `
+        <div class="text-container">
+            <p>
+                Se debe proporcionar un dispositivo de retardo de tiempo ajustable con derivación automática para retrasar la retransferencia del EPS a la fuente primaria de energía y permitir que la fuente primaria se estabilice antes de la retransferencia de la carga. [110:6.2.8]
+
+            </p>
+        </div>
+    `
+},
+"6.7.2.1.2.8 Omisión de retardo de tiempo si falla el EPS":{
+    titulo: 
+"6.7.2.1.2.8 Omisión de retardo de tiempo si falla el EPS",
+    html: `
+        <div class="text-container">
+            <p>
+                El tiempo de retardo se omitirá automáticamente si falla el EPS. [110:6.2.9]
+
+<br>(A) Se debe permitir que el interruptor de transferencia se programe para una retransferencia iniciada manualmente a la fuente primaria para proporcionar una interrupción momentánea planificada de la carga. [110:6.2.9.1]
+
+<br>(B) Si se usa, el arreglo en 6.2.9.1 de NFPA 110 debe contar con una función de derivación para permitir la retransferencia automática en caso de que falle el EPS y la fuente primaria esté disponible
+
+            </p>
+        </div>
+    `
+},
+"6.7.2.1.2.9 Retardo de tiempo en el apagado del motor":{
+    titulo: 
+"6.7.2.1.2.9 Retardo de tiempo en el apagado del motor",
+    html: `
+        <div class="text-container">
+            <p>
+                Se debe proporcionar un retardo de tiempo mínimo de 5 minutos para el funcionamiento sin carga del EPS antes del apagado para permitir que el motor se enfríe. [110:6.2.10]
+
+<br>(A) La demora mínima de 5 minutos no se requerirá en motores primarios pequeños (15 kW o menos) enfriados por aire. [110:6.2.10.1]
+
+<br>(B) No se requerirá un dispositivo de retardo de tiempo, siempre que esté incluido con el panel de control del motor, o si se usa un alimentador de servicios públicos como un EPS. [110:6.2.10.2]
+
+
+            </p>
+        </div>
+    `
+},
+"6.7.2.1.2.10 Interruptor de prueba":{
+    titulo: 
+"6.7.2.1.2.10 Interruptor de prueba",
+    html: `
+        <div class="text-container">
+            <p>
+                Se debe proporcionar un medio de prueba en cada interruptor de transferencia automática (ATS) que simule la falla de la fuente de energía primaria y luego transfiera la carga al EPS. [110:6.2.12]
+
+            </p>
+        </div>
+    `
+},
+"6.7.2.1.2.11Indicación de la posición del interruptor de transferencia":{
+    titulo: 
+"6.7.2.1.2.11Indicación de la posición del interruptor de transferencia",
+    html: `
+        <div class="text-container">
+            <p>
+              Se deben proporcionar dos luces piloto con placas de identificación u otros indicadores de posición aprobados para indicar la posición del interruptor de transferencia. [110:6.2.13]
+
+            </p>
+        </div>
+    `
+}
+};
+
+    // ===============================
+    // Mostrar contenido según subbotón
+    // ===============================
+    if(subboton && contenidos[subboton]){
+        document.getElementById('titulo-subboton').textContent = contenidos[subboton].titulo;
+        document.getElementById('contenido-textos').innerHTML = contenidos[subboton].html;
+    } else {
+        document.getElementById('titulo-subboton').textContent = "Seleccione un subbotón";
+        document.getElementById('contenido-textos').innerHTML = `<div class="text-container"><p>No hay contenido disponible.</p></div>`;
+    }
+</script>
+
+</body>
+</html>

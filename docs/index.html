@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Normas de segmentos</title>
+    <link rel="icon" type="image/png" href="CTS.png">
+
+  <!-- AGREGADO: para que la página sea responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            background: rgba(211, 211, 211, 0.3);
+            display: flex;
+            align-items: center;
+            padding: 5px 20px;
+            box-sizing: border-box;
+        }
+
+        header img {
+            height: 50px;
+            width: 50px;
+            margin-right: 15px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        header span {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0070C0;
+        }
+
+        .header-hr {
+            border: none;
+            height: 2px;
+            background-color: #5DADE2;
+            margin: 0;
+        }
+
+        .main-container {
+            display: flex;
+            flex-grow: 1;
+        }
+
+        .menu {
+            width: 250px;
+            background: #0070C0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 10px;
+            box-sizing: border-box;
+            min-height: 100%;
+        }
+
+        .menu h2 {
+            color: white;
+            margin: 10px 0;
+        }
+
+        .menu button {
+            background: white;
+            color: #6D6D6D;
+            padding: 10px 12px;
+            margin: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 0 4px rgba(0,0,0,0.3);
+            width: calc(100% - 30px);
+            cursor: pointer;
+            border: none;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+        }
+
+        .menu button:hover {
+            background: #f0f0f0;
+        }
+
+        .contenido {
+            position: relative;
+            padding: 10px 20px 20px 30px;
+            min-height: 400px;
+            flex-grow: 1;
+            width: calc(100% - 250px);
+            font-size: 18px;
+            color: #0070C0;
+        }
+
+       .contenido::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('fondo1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.5; /* Puedes subir o bajar este valor */
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+        .contenido > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .icono-volver {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;          
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+            margin: 10px 150px 50px 0;
+        }
+
+        .icono-volver img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .icono-volver:hover {
+            transform: scale(1.15);
+        }
+
+        .sub-hr {
+            border: none;
+            height: 2px;
+            background-color: #5DADE2;
+            margin: 20px 0;
+        }
+
+        .sub-boton {
+            font-family: Arial, sans-serif;
+            
+            display: block;
+            width: calc(100% - 30px);
+            padding: 10px 12px;
+            margin: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            background: white;
+            color: #6D6D6D;
+            border: none;
+            box-shadow: 0 0 4px rgba(0,0,0,0.3);
+            cursor: pointer;
+           
+        }
+
+        .sub-boton:hover {
+            background: #f0f0f0;
+        }
+#menu button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* espacio entre ícono y texto */
+    padding: 10px 15px;
+}
+#menu button img.icono-boton {
+    width: 24px;   /* Ancho fijo del ícono */
+    height: 24px;  /* Alto fijo del ícono */
+}
+/* =====================  RESPONSIVE  ===================== */
+
+/* ===================== Responsive para TABLET ===================== */
+@media (min-width: 600px) and (max-width: 1024px) {
+
+    /* Contenedor general */
+    .container {
+        width: 90%;
+        padding: 20px;
+        margin: 0 auto;
+    }
+
+    /* Botones */
+    button {
+        width: 85%;
+        padding: 12px;
+        font-size: 16px;
+        margin: 8px auto;
+        display: block;
+       background: white;
+       color: #6D6D6D;
+    }
+
+    /* Títulos */
+    h1, h2, h3 {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    /* Imágenes */
+    img {
+        width: 85%;
+        max-width: 600px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
+    /* Bloques de contenido */
+    .segmento, .normas {
+        width: 100%;
+        padding: 20px;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="logo.png" alt="Logo CTS">
+    <span>Industrias CTS S.A.S</span>
+</header>
+<hr class="header-hr">
+
+<div class="main-container">
+    <div class="menu" id="menu"></div>
+
+    <div class="contenido" id="contenido">
+           <h1 id="titulo-principal">NORMAS APLICABLES AL SECTOR.</h1>
+        <hr class="sub-hr">
+        <div id="contenido-dinamico">
+    </div>
+</div>
+
+<script>
+    const menu = document.getElementById("menu");
+    const contenido = document.getElementById("contenido");
+
+    // Mostrar menú de segmentos inicial
+    function mostrarSegmentos() {
+        menu.innerHTML = `
+            <h2>SEGMENTOS</h2>
+            <button onclick="mostrarNormas('health')">
+    <img src="icono-health.png" alt="Health" class="icono-boton">
+    HEALTH CARE
+</button>
+
+            <button onclick="mostrarNormas('infra')"><img src="icono-infra.png" alt="Infraestructura" class="icono-boton">INFRAESTRUCTURA</button>
+
+            <button onclick="mostrarNormas('datacenter')"><img src="icono-datacenter.png" alt="Data Center" class="icono-boton">DATA CENTER</button>
+
+            <button onclick="mostrarNormas('construccion')"><img src="icono-construccion.png" alt="construccion" class="icono-boton">CONSTRUCCIÓN</button>
+
+            <button onclick="mostrarNormas('oil')"><img src="icono-oil.png" alt="oil" class="icono-boton">OIL & GAS</button>
+
+            <button onclick="mostrarNormas('mineria')"><img src="icono-mineria.png" alt="mineria" class="icono-boton">MINERÍA</button>
+
+            <button onclick="mostrarNormas('industrias')"><img src="icono-industria.png" alt="mineria" class="icono-boton">INDUSTRIAS</button>
+
+            <button onclick="mostrarNormas('utilities')"><img src="icono-utilitis.png" alt="mineria" class="icono-boton">UTILITIES</button>
+
+
+
+        `;
+        contenido.innerHTML = `
+            <h1>NORMAS APLICABLES AL SECTOR.</h1>
+            <hr class="sub-hr">
+        `;
+    }
+
+    // Mostrar normas según segmento
+    function mostrarNormas(segmento) {
+        let normasHTML = `<h2>NORMAS</h2>`;
+        if(segmento === 'health') {
+            normasHTML += `
+                <button onclick="mostrarSubNormas('NTC2050','${segmento}')">NTC 2050</button>
+                <button onclick="mostrarSubNormas('RETIE','${segmento}')">RETIE</button>
+                <button onclick="mostrarSubNormas('NFPA99','${segmento}')">NFPA99</button>
+                <button onclick="mostrarSubNormas('NFPA110','${segmento}')">NFPA110</button>
+                <button onclick="mostrarSubNormas('NFPA70','${segmento}')">NFPA70</button>
+                <button onclick="mostrarSubNormas('UL1008','${segmento}')">UL1008</button>
+                <button onclick="mostrarSubNormas('IEC60947-6-1','${segmento}')">IEC 60947-6-1</button>
+            `;
+        } else if(segmento === 'datacenter') {
+            normasHTML += `
+                <button onclick="mostrarSubNormas('TIA942','${segmento}')">TIA 942</button>
+                <button onclick="mostrarSubNormas('NFPA75','${segmento}')">NFPA 75</button>
+            `;
+        }
+        normasHTML += `<div class="icono-volver" onclick="mostrarSegmentos()">
+            <img src="volver.png" alt="Regresar">
+        </div>`;
+        menu.innerHTML = normasHTML;
+        contenido.innerHTML = `<h1></h1><hr class="sub-hr">`;
+    }
+
+    // Mostrar sub-botones de la norma
+    function mostrarSubNormas(norma, segmento) {
+        let subBotones = `<h2>${norma}</h2>`;
+
+        if(norma === "NTC2050") {
+            const items = [
+                '230,95 Protección de equipo contra falla a tierra',
+                '517,17 Protección contra fallas a tierra',
+                '517.31 Requisitos para el sistema eléctrico esencial',
+                '517.32 Ramales que requieren conexión automática',
+                '517.33 Ramal para la protección vital',
+                '517.34 Ramal crítico',
+                '517.42 Sistemas eléctricos esenciales',
+                '517.43 Conexión automática al ramal de protección vital'
+            ];
+
+            items.forEach(item => {
+                subBotones += `
+                    <button class="sub-boton" onclick="abrirContenido('${segmento}','${norma}','${item}')">
+                        ${item}
+                    </button>
+                `;
+            });
+        } else if(norma === "RETIE") {
+            subBotones += `
+                <button class="sub-boton" onclick="abrirContenido('${segmento}','${norma}','Sección A')">Sección A</button>
+                <button class="sub-boton" onclick="abrirContenido('${segmento}','${norma}','Sección B')">Sección B</button>
+            `;
+        }else if(norma === "NFPA99") {
+            const items = [
+                "6.7.2.1.1.1 Coordinación",
+                "6.7.2.1.2 Características del interruptor de transferencia automática",
+                "6.7.2.1.2.1 Monitoreo de fuentes",
+                "6.7.2.1.2.2 Enclavamiento",
+                "6.7.2.1.2.3 Manual de operación",
+                "6.7.2.1.2.4 Retardo de tiempo en el inicio de EPS",
+                "6.7.2.1.2.5 Retardo de tiempo en el panel de control del motor",
+                "6.7.2.1.2.6 Tiempo de Retraso en Transferencia a EPS",
+                "6.7.2.1.2.7 Retraso de tiempo en la retransferencia a la fuente primaria",
+                "6.7.2.1.2.8 Omisión de retardo de tiempo si falla el EPS",
+                "6.7.2.1.2.9 Retardo de tiempo en el apagado del motor",
+                "6.7.2.1.2.10 Interruptor de prueba",
+                "6.7.2.1.2.11Indicación de la posición del interruptor de transferencia",
+            ];
+ items.forEach(item => {
+                subBotones += `
+                    <button class="sub-boton" onclick="abrirContenido('${segmento}','${norma}','${item}')">
+                        ${item}
+                    </button>
+                `;
+
+            });
+        
+
+} else if(norma === "NFPA110") {
+    const items = [
+        "4.1 Niveles de sistemas de energía de emergencia",
+        "5.1 Generador de Energía",
+        
+    ];
+    items.forEach(item => {
+        subBotones += `
+            <button class="sub-boton" onclick="abrirContenido('${segmento}','${norma}','${item}')">
+                ${item}
+            </button>
+        `;
+    });
+
+} else if(norma === "NFPA70") {
+    const items = [
+        "708.24 Equipo de Medida",
+        
+    ];
+    items.forEach(item => {
+        subBotones += `
+            <button class="sub-boton" onclick="abrirContenido('${segmento}','${norma}','${item}')">
+                ${item}
+            </button>
+        `;
+    });
+
+} else if(norma === "UL1008") {
+    const items = [
+        "3.11 Sincronismo",
+        "3.13 Interruptor de Transferencia",
+        
+    ];
+    items.forEach(item => {
+        subBotones += `
+            <button class="sub-boton" onclick="abrirContenido('${segmento}','${norma}','${item}')">
+                ${item}
+            </button>
+        `;
+    });
+} else if(norma === "IEC60947-6-1") {
+    const items = [
+        "3.3.1 Equipos de conmutación de Transferencia",
+        "3.3.9 Controlador ATS",
+        
+    ];
+    items.forEach(item => {
+        subBotones += `
+            <button class="sub-boton" onclick="abrirContenido('${segmento}','${norma}','${item}')">
+                ${item}
+            </button>
+        `;
+    });
+
+
+}
+
+        // Botón de volver
+        subBotones += `
+            <div class="icono-volver" onclick="mostrarNormas('${segmento}')">
+                <img src="volver.png" alt="Regresar">
+            </div>
+        `;
+
+        menu.innerHTML = subBotones;
+        contenido.innerHTML = `<h1>ITÉRALES</h1><hr class="sub-hr">`;
+    }
+
+    // Abrir contenido final (archivo externo)
+  // Abrir contenido final (archivo externo)
+function abrirContenido(segmento, norma, subboton) {
+    let archivo = "";
+
+    // Elegir archivo según la norma
+    if (norma === "NTC2050") {
+        archivo = "NTC 2050.html";  // tu archivo actual que funciona
+    } else if (norma === "NFPA99") {
+        archivo = "NFPA 99.html";   // nuevo archivo que crearás para NFPA 99
+    } else if (norma === "NFPA110") {
+        archivo = "NFPA 110.html";  // nuevo archivo de NFPA 110
+    } else if (norma === "NFPA70") {
+        archivo = "NFPA 70.html";  // nuevo archivo de NFPA 70
+    } else if (norma === "UL1008") {
+        archivo = "UL 1008.html";  // nuevo archivo de UL 1008
+ } else if (norma === "IEC60947-6-1") {
+        archivo = "IEC 60947-6-1.html";  // nuevo archivo de IEC 60947-6-1
+
+    } else {
+        console.error("Norma no reconocida:", norma);
+        return; // salir si no es válida
+    }
+
+    // Redirigir con los parámetros
+    const url = `${archivo}?segmento=${segmento}&norma=${norma}&subboton=${encodeURIComponent(subboton)}`;
+    window.location.href = url;
+}
+
+    // Detectar parámetros de URL para mantener estado
+    const urlParams = new URLSearchParams(window.location.search);
+    const segmentoParam = urlParams.get('segmento');
+    const normaParam = urlParams.get('norma');
+
+    if(segmentoParam && normaParam) {
+        mostrarSubNormas(normaParam, segmentoParam);
+    } else if(segmentoParam) {
+        mostrarNormas(segmentoParam);
+    } else {
+        mostrarSegmentos();
+    }
+</script>
+</body>
+</html>
+

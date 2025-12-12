@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>NFPA 110</title>
+<link rel="icon" type="image/png" href="CTS.png">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f0f0f0;
+    }
+
+    p {
+        line-height: 1.5;
+        margin: 0 0 10px 0;
+    }
+
+    h1 { 
+        color: #0070C0; 
+        position: absolute;
+        top: 120px;  
+        left: 20px;
+        margin: 0;
+        font-size: 70px; 
+        z-index: 2;
+    }
+
+    h2 {
+        color: #6D6D6D;
+        font-weight: bold;
+        position: absolute;
+        top: 200px;
+        left: 20px;
+        margin: 0;
+        font-size: 25px;
+        z-index: 2;
+    }
+
+    .text-row {
+        display: flex;
+        gap: 20px;
+        position: absolute;
+        top: 250px;
+        left: 20px;
+        z-index: 1;
+        flex-wrap: wrap;
+    }
+
+    .text-container {
+        width: 300px;     
+        padding: 20px;
+        background-color: #1e73be; 
+        color: white;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .icono-volver {
+        width: 60px;
+        height: 60px;
+        position: fixed;           
+        top: 20px;
+        left: 20px;
+        border-radius: 50%;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 0 5px rgba(0,0,0,0.3);
+        transition: transform 0.2s ease;
+        z-index: 2;                
+    }
+
+    .icono-volver img { width: 40px; height: 40px; }
+    .icono-volver:hover { transform: scale(1.15); }
+
+    .imagen-independiente {
+        position: absolute;
+        top: 290px;  
+        right: 50px;  
+        width: 400px;  
+        height: auto;
+        z-index: 0;
+    }
+
+/* =====================  RESPONSIVE  ===================== */
+
+/* ===================== Responsive para TABLET ===================== */
+@media (min-width: 600px) and (max-width: 1024px) {
+
+    /* Contenedor general */
+    .container {
+        width: 90%;
+        padding: 20px;
+        margin: 0 auto;
+    }
+
+    /* Botones */
+    button {
+        width: 85%;
+        padding: 12px;
+        font-size: 16px;
+        margin: 8px auto;
+        display: block;
+    }
+
+    /* Títulos */
+    h1, h2, h3 {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    /* Imágenes */
+    img {
+        width: 85%;
+        max-width: 600px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
+    /* Bloques de contenido */
+    .segmento, .normas {
+        width: 100%;
+        padding: 20px;
+    }
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="icono-volver" id="volver">
+    <img src="volver.png" alt="Regresar">
+</div>
+
+<h1>NFPA 110</h1>
+<h2 id="titulo-subboton"></h2>
+
+<img src="image1.png" alt="Imagen independiente" class="imagen-independiente">
+
+<div class="text-row" id="contenido-textos"></div>
+
+<script>
+    // ===============================
+    // Obtener parámetros de URL
+    // ===============================
+    const urlParams = new URLSearchParams(window.location.search);
+    const segmento = urlParams.get('segmento') || 'health';
+    const norma = urlParams.get('norma') || 'NFPA 110';
+    const subboton = urlParams.get('subboton');
+
+    // ===============================
+    // Icono volver
+    // ===============================
+    document.getElementById('volver').addEventListener('click', () => {
+        window.location.href = `index.html?segmento=${segmento}&norma=${norma}`;
+    });
+
+    // ===============================
+    // Contenido de subbotones
+    // ===============================
+ const contenidos = {
+    "4.1 Niveles de sistemas de energía de emergencia": {
+        titulo: "4.1 Niveles de sistemas de energía de emergencia",
+        html: `
+<div style="width:90%; transform: translateX(-15%);"> <!-- AQUÍ: contenedor general -->
+
+            <!-- CUADRO AZUL CENTRADO Y MÁS PEQUEÑO -->
+            <div class="text-container" 
+                 style="
+                    display:block;
+                    width:70%;
+                    margin:auto;
+                    padding:15px;
+                 ">
+
+                <p>
+                    Los dispositivos de protección contra sobre corriente que sirvan al sistema eléctrico 
+                    esencial deben coordinarse durante el período de tiempo en que la duración de 
+                    una falla se extiende más allá de 0,1 segundos.
+                </p>
+
+            </div>
+
+            <!-- SEPARACION REAL -->
+            <div style="clear:both; width:100%; height:20px;"></div>
+
+            <!-- IMÁGENES MÁS PEQUEÑAS DEBAJO DEL CUADRO -->
+            <div class="imagenes-container" 
+                 style="
+                    display:flex;
+                    justify-content:center;
+                    gap:20px;
+                    margin-top:10px;
+                    width:100%;
+                 ">
+
+                <img src="Nivel1.png"
+                     alt="Nivel 1"
+                     style="width:30%; border-radius:10px; border:2px solid #004A8F;">
+
+                <img src="Nivel2.png"
+                     alt="Nivel 2"
+                     style="width:30%; border-radius:10px; border:2px solid #004A8F;">
+            </div>
+        `
+    },
+ "5.1 Generador de Energía":{
+        titulo: "5.1 Generador de Energía",
+        html: `
+             <div class="text-container">
+                <p>
+                    Estará permitido el uso de las siguientes fuentes de energía para la alimentación de los sistemas de potencia de emergencia (EPS):
+<br>1. Productos de petróleo líquido a la presión atmosférica 
+<br>2. Gas licuado de petróleo  (líquido o vapor extraído) 
+<br>3. Gas natural o sintético
+
+                </p>
+
+                       </div>
+        `
+    },
+};
+
+
+
+
+    // ===============================
+    // Mostrar contenido según subbotón
+    // ===============================
+    if(subboton && contenidos[subboton]){
+        document.getElementById('titulo-subboton').textContent = contenidos[subboton].titulo;
+        document.getElementById('contenido-textos').innerHTML = contenidos[subboton].html;
+    } else {
+        document.getElementById('titulo-subboton').textContent = "Seleccione un subbotón";
+        document.getElementById('contenido-textos').innerHTML = `<div class="text-container"><p>No hay contenido disponible.</p></div>`;
+    }
+</script>
+
+</body>
+</html>
